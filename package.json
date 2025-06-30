@@ -24,6 +24,8 @@
     },
     "dependencies": {
         "@inertiajs/progress": "^0.1.2",
-        "bootstrap": "^5.3.7"
+        "aos": "^2.3.4",
+        "bootstrap": "^5.3.7",
+        "swiper": "^11.2.10"
     }
 }

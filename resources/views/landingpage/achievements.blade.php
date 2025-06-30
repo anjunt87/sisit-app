@@ -1,5 +1,16 @@
 <!-- Achievements Section -->
-<section id="achievements" class="py-20 bg-gray-50 px-6">
+<section id="achievements" class="py-20 px-6 relative overflow-hidden bg-gray-50">
+    <!-- Background Geometri Islami -->
+    <svg class="absolute inset-0 w-full h-full opacity-10" xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="xMidYMid slice">
+        <defs>
+            <pattern id="star" patternUnits="userSpaceOnUse" width="50" height="50">
+                <path d="M25 0 L30 20 L50 25 L30 30 L25 50 L20 30 L0 25 L20 20 Z" fill="none" stroke="#16610E"
+                    stroke-width="1" />
+            </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#star)" />
+    </svg>
     <div class="max-w-7xl mx-auto">
         <div class="text-center mb-12 fade-up">
             <span class="inline-block bg-green-100 text-green-600 px-4 py-2 rounded-full text-sm font-semibold mb-4">

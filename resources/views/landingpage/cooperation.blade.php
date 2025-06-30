@@ -1,7 +1,7 @@
 <!-- Kerja Sama Section -->
 <section class="py-14 bg-gradient-to-br from-blue-50 to-green-50 px-6">
     <div class="max-w-5xl mx-auto">
-        <div class="text-center mb-10">
+        <div class="text-center mb-10 fade-up delay-0">
             <span class="inline-block bg-green-100 text-green-600 px-4 py-2 rounded-full text-sm font-semibold mb-4">
                 Kerja Sama
             </span>
@@ -15,7 +15,7 @@
         </div>
 
         <!-- Swiper Container -->
-        <div class="swiper kerja-sama-swiper">
+        <div class="swiper kerja-sama-swiper fade-up delay-0">
             <div class="swiper-wrapper pb-10">
                 <!-- Slide 1 -->
                 <div class="swiper-slide flex items-center justify-center">

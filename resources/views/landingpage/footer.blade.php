@@ -113,17 +113,18 @@
         </div>
     </div>
 </footer>
+<!-- Back to top button (Glassmorphism no-ring) -->
+<button id="backToTop" type="button"
+    class="fixed bottom-24 right-4 z-50 w-12 h-12 bg-white/20 text-green-600 rounded-full shadow-xl backdrop-blur-md flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-500"
+    title="Back to Up">
+    <i class="fas fa-chevron-up text-xl"></i>
+</button>
 
-<!-- Floating WhatsApp Button -->
-<div class="fixed bottom-6 right-6 z-50">
+<!-- Floating WhatsApp Button (Glassmorphism no-ring) -->
+<div class="fixed bottom-6 right-4 z-40">
     <a href="https://wa.me/628123456789" target="_blank"
-        class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center shadow-2xl hover:bg-green-600 transition-all hover:scale-110">
-        <i class="fab fa-whatsapp text-white text-2xl"></i>
+        class="w-12 h-12 bg-white/20 text-green-600 rounded-full flex items-center justify-center shadow-xl backdrop-blur-md hover:bg-white/30 transition-all hover:scale-110"
+        title="Hubungi via WhatsApp">
+        <i class="fab fa-whatsapp text-xl"></i>
     </a>
 </div>
-
-<!-- Back to Top Button -->
-<button id="backToTop"
-    class="fixed bottom-6 left-6 w-12 h-12 bg-gray-800 text-white rounded-full items-center justify-center shadow-lg hover:bg-gray-700 transition-all opacity-0 pointer-events-none z-50">
-    <i class="fas fa-chevron-up"></i>
-</button>

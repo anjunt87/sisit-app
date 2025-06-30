@@ -21,18 +21,20 @@
     <link rel="icon" type="image/png" href="{{ asset('storage/img/logo-niis-warna.png') }}">
     {{-- <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"> --}}
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    {{-- <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"> --}}
 
     <!-- Swiper CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
     {{-- <link rel="stylesheet" href="{{ asset('css/app.css') }}"> --}}
     {{-- <link rel="stylesheet" href="{{ asset('css/landing.css') }}"> --}}
-    @vite('resources/css/landing.css')
+    @vite(['resources/css/landing.css', 'resources/js/landing.js'])
 </head>
 
 <body class="bg-white text-gray-800 overflow-x-hidden">
+
     @include('landingpage.navbar') {{-- Navigasi utama --}}
     @include('landingpage.hero') {{-- Hero section (headline utama) --}}
     @include('landingpage.about') {{-- Tentang sekolah --}}
@@ -50,12 +52,6 @@
     @include('landingpage.cooperation') {{-- Mitra & kerja sama --}}
     @include('landingpage.footer') {{-- Footer --}}
 
-
-    <!-- Back to top button -->
-    <button id="backToTop"
-        class="fixed bottom-4 right-4 z-50 p-3 bg-green-600 text-white rounded-full shadow-lg flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
-        <i class="fas fa-chevron-up"></i>
-    </button>
 
     <!-- Scripts -->
     {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
@@ -82,28 +78,55 @@
 
     <!-- Inisialisasi Vanta Birds -->
     <script>
-        VANTA.BIRDS({
-            el: "#vanta-hero",
-            backgroundAlpha: 1,
-            backgroundColor: 0x059669, // Hijau Tua SISIT
-            birdSize: 0.8,
-            cohesion: 14,
-            color1: 0x16610E, // Hijau tua
-            color2: 0xFED16A, // Kuning madu (opsional bisa kamu ganti)
-            colorMode: "lerp",
-            separation: 20,
-            speedLimit: 8,
-            wingSpan: 30,
-            quantity: 5,
-            mouseControls: true,
-            touchControls: true,
-            gyroControls: true,
-            minHeight: 200,
-            minWidth: 200,
-            scale: 1,
-            scaleMobile: 1
+        document.addEventListener('DOMContentLoaded', function() {
+            const vantaElement = document.getElementById("vanta-hero");
+            if (vantaElement && window.VANTA) {
+                VANTA.BIRDS({
+                    el: "#vanta-hero",
+                    backgroundAlpha: 1,
+                    backgroundColor: 0x059669, // Hijau Tua SISIT
+                    birdSize: 0.8,
+                    cohesion: 14,
+                    color1: 0x16610E, // Hijau tua
+                    color2: 0xFED16A, // Kuning madu (opsional bisa kamu ganti)
+                    colorMode: "lerp",
+                    separation: 20,
+                    speedLimit: 8,
+                    wingSpan: 30,
+                    quantity: 5,
+                    mouseControls: true,
+                    touchControls: true,
+                    gyroControls: true,
+                    minHeight: 200,
+                    minWidth: 200,
+                    scale: 1,
+                    scaleMobile: 1
+                });
+            }
         });
     </script>
+    {{-- JS Interaksi FAQ --}}
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const toggles = document.querySelectorAll(".faq-toggle");
+
+            toggles.forEach((btn) => {
+                btn.addEventListener("click", () => {
+                    const answer = btn.nextElementSibling;
+                    const svgIcon = btn.querySelector("svg");
+
+                    answer.classList.toggle("hidden");
+                    svgIcon.classList.toggle("rotate-180");
+
+                    // Tambah kelas aktif
+                    btn.classList.toggle("bg-green-50");
+                    btn.classList.toggle("text-green-800");
+                    btn.classList.toggle("font-semibold");
+                });
+            });
+        });
+    </script>
+
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const observer = new IntersectionObserver((entries) => {
@@ -129,32 +152,33 @@
             const navLinks = document.querySelectorAll('.nav-link');
             const navbarLogo = document.getElementById('navbar-logo');
 
-            if (window.scrollY > 20) {
-                navbar.classList.add('glassmorph');
+            if (navbar && navbarLogo) {
+                if (window.scrollY > 20) {
+                    navbar.classList.add('glassmorph');
 
-                // Ganti logo ke berwarna
-                navbarLogo.src = "{{ asset('storage/img/logo-niis-warna.png') }}";
+                    // Ganti logo ke berwarna
+                    navbarLogo.src = "{{ asset('storage/img/logo-niis-warna.png') }}";
 
-                // Ganti warna teks link
-                navLinks.forEach(link => {
-                    link.classList.remove('text-white');
-                    link.classList.add('text-gray-700', 'hover:text-green-600');
-                });
-            } else {
-                navbar.classList.remove('glassmorph');
+                    // Ganti warna teks link
+                    navLinks.forEach(link => {
+                        link.classList.remove('text-white');
+                        link.classList.add('text-gray-700', 'hover:text-green-600');
+                    });
+                } else {
+                    navbar.classList.remove('glassmorph');
 
-                // Ganti logo ke putih
-                navbarLogo.src = "{{ asset('storage/img/logo-niis-putih.png') }}";
+                    // Ganti logo ke putih
+                    navbarLogo.src = "{{ asset('storage/img/logo-niis-putih.png') }}";
 
-                // Kembalikan warna teks link
-                navLinks.forEach(link => {
-                    link.classList.remove('text-gray-700', 'hover:text-green-600');
-                    link.classList.add('text-white');
-                });
+                    // Kembalikan warna teks link
+                    navLinks.forEach(link => {
+                        link.classList.remove('text-gray-700', 'hover:text-green-600');
+                        link.classList.add('text-white');
+                    });
+                }
             }
         });
     </script>
-
 
     <!-- Intersection Observer Script -->
     <script>
@@ -241,135 +265,165 @@
 
     <!-- SwiperJS Init -->
     <script>
-        // Testimoni Swiper
-        new Swiper('.testimonial-swiper', {
-            slidesPerView: 1,
-            spaceBetween: 20,
-            loop: true,
-            autoplay: {
-                delay: 4000,
-                disableOnInteraction: false,
-            },
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            breakpoints: {
-                768: {
-                    slidesPerView: 2
-                },
-                1024: {
-                    slidesPerView: 3
-                },
-            },
-        });
-
-        // Jumbotron Swiper Init
-        new Swiper('.jumbotron-swiper', {
-            loop: true,
-            autoplay: {
-                delay: 6000,
-                disableOnInteraction: false,
-            },
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
+        document.addEventListener('DOMContentLoaded', function() {
+            // Testimoni Swiper
+            if (document.querySelector('.testimonial-swiper')) {
+                new Swiper('.testimonial-swiper', {
+                    slidesPerView: 1,
+                    spaceBetween: 20,
+                    loop: true,
+                    autoplay: {
+                        delay: 4000,
+                        disableOnInteraction: false,
+                    },
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true,
+                    },
+                    breakpoints: {
+                        768: {
+                            slidesPerView: 2
+                        },
+                        1024: {
+                            slidesPerView: 3
+                        },
+                    },
+                });
             }
-        });
 
-        // Fasilitas Swiper
-        new Swiper('.facilities-swiper', {
-            slidesPerView: 2,
-            spaceBetween: 20,
-            loop: true,
-            autoplay: {
-                delay: 3000,
-                disableOnInteraction: false,
-            },
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            breakpoints: {
-                640: {
-                    slidesPerView: 2,
-                    spaceBetween: 20
-                },
-                768: {
-                    slidesPerView: 3,
-                    spaceBetween: 30
-                },
-                1024: {
-                    slidesPerView: 4,
-                    spaceBetween: 30
-                },
-                1280: {
-                    slidesPerView: 5,
-                    spaceBetween: 30
-                },
+            // Jumbotron Swiper Init
+            if (document.querySelector('.jumbotron-swiper')) {
+                new Swiper('.jumbotron-swiper', {
+                    loop: true,
+                    autoplay: {
+                        delay: 6000,
+                        disableOnInteraction: false,
+                    },
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true,
+                    }
+                });
             }
-        });
-        // Berita Swiper
-        new Swiper('.berita-swiper', {
-            slidesPerView: 2,
-            spaceBetween: 20,
-            loop: true,
-            autoplay: {
-                delay: 3000,
-                disableOnInteraction: false,
-            },
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            breakpoints: {
-                640: {
-                    slidesPerView: 2,
-                    spaceBetween: 20
-                },
-                768: {
-                    slidesPerView: 2,
-                    spaceBetween: 30
-                },
-                1024: {
-                    slidesPerView: 3,
-                    spaceBetween: 30
-                },
-                1280: {
-                    slidesPerView: 4,
-                    spaceBetween: 30
-                },
-            }
-        });
 
-        // Kerja Sama Swiper
-        new Swiper('.kerja-sama-swiper', {
-            slidesPerView: 2,
-            spaceBetween: 20,
-            loop: true,
-            autoplay: {
-                delay: 3000,
-                disableOnInteraction: false,
-            },
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            breakpoints: {
-                640: {
-                    slidesPerView: 3
-                },
-                1024: {
-                    slidesPerView: 5
-                }
+            // Fasilitas Swiper
+            if (document.querySelector('.facilities-swiper')) {
+                new Swiper('.facilities-swiper', {
+                    slidesPerView: 2,
+                    spaceBetween: 20,
+                    loop: true,
+                    autoplay: {
+                        delay: 3000,
+                        disableOnInteraction: false,
+                    },
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true,
+                    },
+                    breakpoints: {
+                        640: {
+                            slidesPerView: 2,
+                            spaceBetween: 20
+                        },
+                        768: {
+                            slidesPerView: 3,
+                            spaceBetween: 30
+                        },
+                        1024: {
+                            slidesPerView: 4,
+                            spaceBetween: 30
+                        },
+                        1280: {
+                            slidesPerView: 5,
+                            spaceBetween: 30
+                        },
+                    }
+                });
+            }
+
+            // Berita Swiper
+            if (document.querySelector('.berita-swiper')) {
+                new Swiper('.berita-swiper', {
+                    slidesPerView: 2,
+                    spaceBetween: 20,
+                    loop: true,
+                    autoplay: {
+                        delay: 3000,
+                        disableOnInteraction: false,
+                    },
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true,
+                    },
+                    breakpoints: {
+                        640: {
+                            slidesPerView: 2,
+                            spaceBetween: 20
+                        },
+                        768: {
+                            slidesPerView: 2,
+                            spaceBetween: 30
+                        },
+                        1024: {
+                            slidesPerView: 3,
+                            spaceBetween: 30
+                        },
+                        1280: {
+                            slidesPerView: 4,
+                            spaceBetween: 30
+                        },
+                    }
+                });
+            }
+
+            // Kerja Sama Swiper
+            if (document.querySelector('.kerja-sama-swiper')) {
+                new Swiper('.kerja-sama-swiper', {
+                    slidesPerView: 2,
+                    spaceBetween: 20,
+                    loop: true,
+                    autoplay: {
+                        delay: 3000,
+                        disableOnInteraction: false,
+                    },
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true,
+                    },
+                    breakpoints: {
+                        640: {
+                            slidesPerView: 3
+                        },
+                        1024: {
+                            slidesPerView: 5
+                        }
+                    }
+                });
             }
         });
     </script>
 
+    <!-- Back to top functionality -->
     <script>
-        // Toggle read more functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const backToTop = document.getElementById('backToTop');
+            if (backToTop) {
+                backToTop.addEventListener('click', () => {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+        });
+    </script>
+
+    <!-- Toggle read more functionality -->
+    <script>
         function toggleReadMore(button) {
             const excerpt = button.previousElementSibling;
+            if (!excerpt) return;
+
             const isExpanded = excerpt.classList.contains('expanded');
 
             if (isExpanded) {
@@ -383,85 +437,6 @@
             }
         }
     </script>
-
-    <script>
-        // Initialize Swiper
-        var swiper = new Swiper('.berita-swiper', {
-            slidesPerView: 2,
-            spaceBetween: 20,
-            loop: true,
-            autoplay: {
-                delay: 3000,
-                disableOnInteraction: false,
-            },
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            breakpoints: {
-                640: {
-                    slidesPerView: 2,
-                    spaceBetween: 20,
-                },
-                768: {
-                    slidesPerView: 2,
-                    spaceBetween: 30,
-                },
-                1024: {
-                    slidesPerView: 3,
-                    spaceBetween: 30,
-                },
-                1280: {
-                    slidesPerView: 4,
-                    spaceBetween: 30,
-                }
-            }
-        });
-
-        // Toggle read more functionality
-        function toggleReadMore(button) {
-            const excerpt = button.previousElementSibling;
-            const isExpanded = excerpt.classList.contains('expanded');
-
-            if (isExpanded) {
-                excerpt.classList.remove('expanded');
-                excerpt.classList.add('line-clamp-2');
-                button.textContent = 'Baca Selengkapnya';
-            } else {
-                excerpt.classList.add('expanded');
-                excerpt.classList.remove('line-clamp-2');
-                button.textContent = 'Tampilkan Lebih Sedikit';
-            }
-        }
-    </script>
-
-    <script>
-        const kerjaSamaSwiper = new Swiper('.kerja-sama-swiper', {
-            slidesPerView: 2,
-            spaceBetween: 20,
-            loop: true,
-            autoplay: {
-                delay: 3000,
-                disableOnInteraction: false,
-            },
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            breakpoints: {
-                640: {
-                    slidesPerView: 3
-                },
-                1024: {
-                    slidesPerView: 5
-                }
-            }
-        });
-    </script>
-
-    <!-- Inisialisasi Swiper -->
-    <!-- Swiper Init -->
-
 
     <!-- Js angka dinamis -->
     <script>
@@ -488,159 +463,158 @@
         });
     </script>
 
-
+    <!-- Mobile menu and other functionalities -->
     <script>
-        // Mobile menu toggle
-        const mobileMenuButton = document.getElementById('mobileMenuButton');
-        const mobileMenu = document.getElementById('mobileMenu');
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobileMenuButton');
+            const mobileMenu = document.getElementById('mobileMenu');
 
-        if (mobileMenuButton && mobileMenu) {
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-        }
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-
-                    // Close mobile menu if open
-                    mobileMenu.classList.add('hidden');
-                }
-            });
-        });
-
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-            const navbar = document.getElementById('navbar');
-            const backToTop = document.getElementById('backToTop');
-
-            if (window.scrollY > 100) {
-                navbar.classList.add('bg-white', 'shadow-lg');
-                navbar.classList.remove('bg-transparent');
-                backToTop.style.opacity = '1';
-                backToTop.classList.add('flex');
-                backToTop.classList.remove('pointer-events-none');
-            } else {
-                navbar.classList.remove('bg-white', 'shadow-lg');
-                navbar.classList.add('bg-transparent');
-                backToTop.style.opacity = '0';
-                backToTop.classList.remove('flex');
-                backToTop.classList.add('pointer-events-none');
-            }
-        });
-
-        // Back to top functionality
-        document.getElementById('backToTop').addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-
-        // Counter animation
-        function animateCounter(element, target, duration = 2000) {
-            let start = 0;
-            const increment = target / (duration / 16);
-
-            function updateCounter() {
-                start += increment;
-                if (start < target) {
-                    element.textContent = Math.floor(start);
-                    requestAnimationFrame(updateCounter);
-                } else {
-                    element.textContent = target;
-                }
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
             }
 
-            updateCounter();
-        }
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
 
-        // Intersection Observer for counter animation
-        const counterObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const counter = entry.target;
-                    const target = parseInt(counter.getAttribute('data-target'));
-                    animateCounter(counter, target);
-                    counterObserver.unobserve(counter);
-                }
-            });
-        });
-
-        document.querySelectorAll('[data-target]').forEach(counter => {
-            counterObserver.observe(counter);
-        });
-
-        // Form submission handling
-        document.querySelector('form').addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            // Get form data
-            const formData = new FormData(this);
-
-            // Show success message (in real implementation, you would send data to server)
-            alert('Terima kasih! Pesan Anda telah terkirim. Kami akan menghubungi Anda segera.');
-
-            // Reset form
-            this.reset();
-        });
-
-        // Add loading animation to buttons
-        document.querySelectorAll('button').forEach(button => {
-            button.addEventListener('click', function() {
-                if (this.type !== 'submit') return;
-
-                const originalText = this.innerHTML;
-                this.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Mengirim...';
-                this.disabled = true;
-
-                setTimeout(() => {
-                    this.innerHTML = originalText;
-                    this.disabled = false;
-                }, 2000);
-            });
-        });
-
-        // Lazy loading for images
-        if ('IntersectionObserver' in window) {
-            const imageObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        img.src = img.dataset.src;
-                        img.classList.remove('lazy');
-                        imageObserver.unobserve(img);
+                        // Close mobile menu if open
+                        if (mobileMenu) {
+                            mobileMenu.classList.add('hidden');
+                        }
                     }
                 });
             });
 
-            document.querySelectorAll('img[data-src]').forEach(img => {
-                imageObserver.observe(img);
+            // Navbar scroll effect
+            window.addEventListener('scroll', () => {
+                const navbar = document.getElementById('navbar');
+                const backToTop = document.getElementById('backToTop');
+
+                if (navbar) {
+                    if (window.scrollY > 100) {
+                        navbar.classList.add('bg-white', 'shadow-lg');
+                        navbar.classList.remove('bg-transparent');
+                    } else {
+                        navbar.classList.remove('bg-white', 'shadow-lg');
+                        navbar.classList.add('bg-transparent');
+                    }
+                }
+
+                if (backToTop) {
+                    if (window.scrollY > 100) {
+                        backToTop.style.opacity = '1';
+                        backToTop.classList.add('flex');
+                        backToTop.classList.remove('pointer-events-none');
+                    } else {
+                        backToTop.style.opacity = '0';
+                        backToTop.classList.remove('flex');
+                        backToTop.classList.add('pointer-events-none');
+                    }
+                }
             });
-        }
 
-        // Add smooth reveal animation to sections
-        // const revealObserver = new IntersectionObserver((entries) => {
-        //     entries.forEach(entry => {
-        //         if (entry.isIntersecting) {
-        //             entry.target.classList.add('animate-fadeInUp');
-        //         }
-        //     });
-        // }, {
-        //     threshold: 0.1
-        // });
+            // Form submission handling
+            const form = document.querySelector('form');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
 
-        // document.querySelectorAll('section').forEach(section => {
-        //     revealObserver.observe(section);
-        // });
+                    // Get form data
+                    const formData = new FormData(this);
+
+                    // Show success message (in real implementation, you would send data to server)
+                    alert('Terima kasih! Pesan Anda telah terkirim. Kami akan menghubungi Anda segera.');
+
+                    // Reset form
+                    this.reset();
+                });
+            }
+
+            // Add loading animation to buttons
+            document.querySelectorAll('button').forEach(button => {
+                button.addEventListener('click', function() {
+                    if (this.type !== 'submit') return;
+
+                    const originalText = this.innerHTML;
+                    this.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Mengirim...';
+                    this.disabled = true;
+
+                    setTimeout(() => {
+                        this.innerHTML = originalText;
+                        this.disabled = false;
+                    }, 2000);
+                });
+            });
+
+            // Lazy loading for images
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            img.src = img.dataset.src;
+                            img.classList.remove('lazy');
+                            imageObserver.unobserve(img);
+                        }
+                    });
+                });
+
+                document.querySelectorAll('img[data-src]').forEach(img => {
+                    imageObserver.observe(img);
+                });
+            }
+        });
+    </script>
+
+    <!-- Counter animation with Intersection Observer -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Counter animation
+            function animateCounter(element, target, duration = 2000) {
+                let start = 0;
+                const increment = target / (duration / 16);
+
+                function updateCounter() {
+                    start += increment;
+                    if (start < target) {
+                        element.textContent = Math.floor(start);
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        element.textContent = target;
+                    }
+                }
+
+                updateCounter();
+            }
+
+            // Intersection Observer for counter animation
+            const counterObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const counter = entry.target;
+                        const target = parseInt(counter.getAttribute('data-target'));
+                        if (!isNaN(target)) {
+                            animateCounter(counter, target);
+                        }
+                        counterObserver.unobserve(counter);
+                    }
+                });
+            });
+
+            document.querySelectorAll('[data-target]').forEach(counter => {
+                counterObserver.observe(counter);
+            });
+        });
     </script>
 </body>
 

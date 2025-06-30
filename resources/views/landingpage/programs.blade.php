@@ -77,10 +77,3 @@
         </div>
     </div>
 </section>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const programCards = document.querySelectorAll('.program-card');
-        programCards.forEach((card, index) => {
-            card.style.transitionDelay = `${index * 100}ms`;
-        });
-    });

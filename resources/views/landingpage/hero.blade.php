@@ -1,7 +1,7 @@
 <!-- Hero Section -->
 
 <!-- Hero Section -->
-<section id="vanta-hero" class="relative text-white py-32 px-6 overflow-hidden bg-[#059669]">
+<section id="vanta-hero" class="home relative text-white py-32 px-6 overflow-hidden bg-[#059669]">
     <!-- Floating Shapes -->
     <div class="floating-shapes z-10 absolute inset-0 pointer-events-none">
         <div class="shape w-16 h-16 bg-yellow-300 rounded-full absolute left-10 top-1/5 animate-bounce"></div>
@@ -20,7 +20,7 @@
 
         <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
             Selamat Datang di <br>
-            <span class="gradient-text typing-animation inline-block">
+            <span class="gradient-text typing-loop-animation">
                 NURUL IMAM ISLAMIC SCHOOL
             </span>
         </h1>

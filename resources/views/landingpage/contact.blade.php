@@ -1,7 +1,7 @@
 <!-- Contact Section -->
 <section id="contact" class="py-20 bg-white">
     <div class="max-w-7xl mx-auto px-6">
-        <div class="text-center mb-16">
+        <div class="text-center mb-16 fade-up delay-0">
             <span class="inline-block bg-green-100 text-green-600 px-4 py-2 rounded-full text-sm font-semibold mb-4">
                 Kontak
             </span>
@@ -11,7 +11,7 @@
         </div>
 
         <div class="grid lg:grid-cols-2 gap-16">
-            <div>
+            <div class="slide-in-left">
                 <h3 class="text-2xl font-bold text-gray-800 mb-6">Informasi Kontak</h3>
                 <div class="space-y-6">
                     <div class="flex items-start space-x-4">
@@ -58,7 +58,7 @@
                 </div>
             </div>
 
-            <div>
+            <div class="slide-in-right">
                 <h3 class="text-2xl font-bold text-gray-800 mb-6">Kirim Pesan</h3>
                 <form class="space-y-6">
                     <div class="grid md:grid-cols-2 gap-4">

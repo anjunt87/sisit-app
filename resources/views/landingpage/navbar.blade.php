@@ -12,7 +12,7 @@
             </div>
             <div class="hidden md:block">
                 <div class="ml-10 flex items-baseline space-x-4">
-                    <a href="#home" class="nav-link px-3 py-2 text-sm font-medium transition">Beranda</a>
+                    <a href="#vanta-hero" class="nav-link px-3 py-2 text-sm font-medium transition">Beranda</a>
                     <a href="#about" class="nav-link px-3 py-2 text-sm font-medium transition">Tentang</a>
                     <a href="#programs" class="nav-link px-3 py-2 text-sm font-medium transition">Program</a>
                     <a href="#facilities" class="nav-link px-3 py-2 text-sm font-medium transition">Fasilitas</a>
