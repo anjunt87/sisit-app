@@ -15,7 +15,7 @@
 
         <!-- Main content -->
         <div class="content-wrapper">
-            {{-- @yield('content') --}}
+            @yield('content')
         </div>
 
         @include('layouts.partials.footer')

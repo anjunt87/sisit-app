@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Role;
+use App\Models\PenugasanGuru;
 
 class User extends Authenticatable
 {
@@ -49,5 +50,10 @@ class User extends Authenticatable
         // return $this->belongsTo(Role::class);
         // or if you use different foreign key:
         return $this->belongsTo(Role::class, 'role_id', 'id');
+    }
+
+    public function penugasan()
+    {
+        return $this->hasMany(PenugasanGuru::class, 'guru_id', 'profil_id');
     }
 }
