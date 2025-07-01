@@ -180,7 +180,7 @@
                     <template x-for="(slide, i) in slides" :key="'indicator-' + i">
                         <button @click="goTo(i)"
                             :class="i === current ? 'bg-green-500 scale-125' : 'bg-white bg-opacity-50 hover:bg-opacity-75'"
-                            class="w-3 h-3 rounded-full transition duration-300"></button>
+                            class="w-3 h-3 rounded-full transition duration-300" type="button"></button>
                     </template>
                 </div>
 

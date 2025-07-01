@@ -196,8 +196,8 @@
 
 <!-- Floating Button -->
 <div class="fixed bottom-20 right-4 z-40">
-    <button id="chatbotToggle"
-        class="w-12 h-12 bg-white/20 text-green-600 rounded-full flex items-center justify-center shadow-xl backdrop-blur-md hover:bg-white/30 transition-all hover:scale-110"
+    <button id="chatbotToggle" type="button"
+        class="w-12 h-12 bg-white/20 text-green-600 rounded-full flex items-center justify-center shadow-xl backdrop-blur-md hover:bg-white/30 transition-all hover:scale-110 cursor-pointer"
         title="Buka Chatbot">
         <i class="fas fa-comment-alt text-xl"></i>
     </button>
