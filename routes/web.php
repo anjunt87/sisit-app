@@ -15,11 +15,11 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Middleware\CheckRole;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\ChatbotController;
 
 Route::get('/', function () {
     return view('landingpage');
 });
-
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');

@@ -64,10 +64,10 @@
 
     <!-- Scripts -->
     <!-- SwiperJS CDN -->
-    {{-- <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <!-- CDN Alpine.js dan AOS -->
-    {{-- <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script> --}}
-    {{-- <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <!-- Tambahkan di <head> atau sebelum </body> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.birds.min.js"></script>
@@ -113,6 +113,7 @@
             }
         });
     </script>
+
     {{-- JS Interaksi FAQ --}}
     <script>
         document.addEventListener("DOMContentLoaded", function() {
