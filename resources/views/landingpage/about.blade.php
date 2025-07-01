@@ -164,8 +164,7 @@
         <!-- Navigation Controls -->
         <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
             <div
-                class="flex items-center space-x-6 bg-black bg-opacity-50 backdrop-blur-lg rounded-full px-6 py-4 border border-white border-opacity-20">
-
+                class="flex items-center space-x-6  bg-green-100/10 backdrop-blur-md rounded-full px-6 py-4  border border-green-300/20 shadow-lg">
                 <!-- Autoplay Toggle -->
                 <button @click="toggleAutoplay()" class="text-white hover:text-green-400 transition duration-300">
                     <span x-show="autoplay" class="text-xl">⏸</span>

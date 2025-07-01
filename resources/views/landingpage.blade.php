@@ -3,35 +3,44 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-    <meta name="description" content="Nurul Imam Karawang NIIS">
+
+    <!-- SEO Meta -->
+    <title>Sekolah Islam Terpadu Terbaik di Karawang - Nurul Imam Islamic School</title>
+    <meta name="description"
+        content="Nurul Imam Islamic School adalah Sekolah Islam Terpadu (SIT) terbaik di Karawang, berfokus pada pendidikan Qurani, karakter, dan akademik unggulan.">
     <meta name="keywords"
-        content="nurul, imam, niis, nurul imam, niis, nurul imam karawang, sdit karawang, nurul iman islamic, sdit nurul iman karawang, nurul imam islamic school, nurul imam islamic school karawang">
-    <meta name="author" content="niis, niis official">
+        content="Sekolah Islam Karawang, SIT Karawang, SDIT Nurul Imam, Nurul Imam Islamic School, Sekolah Islam Terpadu terbaik, sekolah tahfidz Karawang, sekolah islami Karawang">
+    <meta name="author" content="Nurul Imam Islamic School">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <!-- Open Graph / Facebook -->
     <meta property="og:site_name" content="Nurul Imam Islamic School">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://nurulimamkarawang.sch.id">
-    <meta property="og:title" content="Nurul Imam Islamic School">
-    <meta property="og:description" content="Nurul Imam Islamic School">
+    <meta property="og:title" content="Sekolah Islam Terpadu Terbaik di Karawang - Nurul Imam Islamic School">
+    <meta property="og:description"
+        content="Gabung bersama SIT Nurul Imam Karawang, sekolah dengan kurikulum Islam terpadu dan tahfidz Qur'an unggulan.">
     <meta property="og:image" content="https://nurulimamkarawang.sch.id/ui-kit/img/logo.png">
-    <meta name="csrf-token" content="I0OXUghCGEfeBqZjzbAqqAwMiAgYoBNRgjHRkoit">
-    <title>SISIT - Nurul Imam Islamic School</title>
+
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="{{ asset('storage/img/logo-niis-warna.png') }}">
-    {{-- <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"> --}}
+
+    <!-- Fonts & Icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    {{-- <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"> --}}
 
     <!-- Swiper CSS -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    @vite('resources/css/app.css')
-    @vite('resources/js/app.js')
-    {{-- <link rel="stylesheet" href="{{ asset('css/app.css') }}"> --}}
-    {{-- <link rel="stylesheet" href="{{ asset('css/landing.css') }}"> --}}
-    @vite(['resources/css/landing.css', 'resources/js/landing.js'])
+
+    <!-- Vite Assets -->
+    @vite(['resources/css/app.css', 'resources/css/landing.css'])
+    @vite(['resources/js/app.js', 'resources/js/landing.js'])
+
+    <!-- Swiper JS -->
+    {{-- <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script> --}}
 </head>
+
 
 <body class="bg-white text-gray-800 overflow-x-hidden">
 
@@ -54,13 +63,14 @@
 
 
     <!-- Scripts -->
-    {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
-
     <!-- SwiperJS CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script> --}}
     <!-- CDN Alpine.js dan AOS -->
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script> --}}
+    {{-- <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> --}}
+    <!-- Tambahkan di <head> atau sebelum </body> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.birds.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             if (window.AOS) {
@@ -72,9 +82,7 @@
         });
     </script>
 
-    <!-- Tambahkan di <head> atau sebelum </body> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.birds.min.js"></script>
+
 
     <!-- Inisialisasi Vanta Birds -->
     <script>
@@ -355,23 +363,50 @@
                         el: '.swiper-pagination',
                         clickable: true,
                     },
+                    // Responsive breakpoints
                     breakpoints: {
+                        // Mobile phones
+                        320: {
+                            slidesPerView: 1,
+                            spaceBetween: 20
+                        },
+                        // Large phones
+                        480: {
+                            slidesPerView: 1,
+                            spaceBetween: 20
+                        },
+                        // Tablets
                         640: {
                             slidesPerView: 2,
                             spaceBetween: 20
                         },
+                        // Small laptops
                         768: {
                             slidesPerView: 2,
                             spaceBetween: 30
                         },
+                        // Laptops
                         1024: {
                             slidesPerView: 3,
                             spaceBetween: 30
                         },
+                        // Desktop
                         1280: {
                             slidesPerView: 4,
                             spaceBetween: 30
-                        },
+                        }
+                    },
+
+                    // Effects
+                    speed: 600,
+                    effect: 'slide',
+
+                    // Accessibility
+                    a11y: {
+                        prevSlideMessage: 'Slide sebelumnya',
+                        nextSlideMessage: 'Slide selanjutnya',
+                        firstSlideMessage: 'Ini adalah slide pertama',
+                        lastSlideMessage: 'Ini adalah slide terakhir'
                     }
                 });
             }

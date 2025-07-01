@@ -1,3 +1,35 @@
+<style>
+    /* Custom Swiper Styles */
+    .testimonial-swiper .swiper-pagination-bullet {
+        background: #10b981;
+        opacity: 0.5;
+    }
+
+    .testimonial-swiper .swiper-pagination-bullet-active {
+        opacity: 1;
+        background: #059669;
+    }
+
+    .testimonial-swiper .swiper-button-next,
+    .testimonial-swiper .swiper-button-prev {
+        color: #059669;
+    }
+
+    .testimonial-swiper .swiper-button-next:hover,
+    .testimonial-swiper .swiper-button-prev:hover {
+        color: #10b981;
+    }
+
+    /* Hover effects */
+    .swiper-slide {
+        transition: transform 0.3s ease;
+    }
+
+    .swiper-slide:hover {
+        transform: translateY(-5px);
+    }
+</style>
+
 <!-- Testimonials Section with Swiper -->
 <section class="py-20 px-6 relative overflow-hidden bg-gray-50">
     <!-- Background Geometri Islami -->

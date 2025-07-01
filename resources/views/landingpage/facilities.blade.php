@@ -1,3 +1,35 @@
+<style>
+    /* Custom Swiper Styles */
+    .facilities-swiper .swiper-pagination-bullet {
+        background: #10b981;
+        opacity: 0.5;
+    }
+
+    .facilities-swiper .swiper-pagination-bullet-active {
+        opacity: 1;
+        background: #059669;
+    }
+
+    .facilities-swiper .swiper-button-next,
+    .facilities-swiper .swiper-button-prev {
+        color: #059669;
+    }
+
+    .facilities-swiper .swiper-button-next:hover,
+    .facilities-swiper .swiper-button-prev:hover {
+        color: #10b981;
+    }
+
+    /* Hover effects */
+    .swiper-slide {
+        transition: transform 0.3s ease;
+    }
+
+    .swiper-slide:hover {
+        transform: translateY(-5px);
+    }
+</style>
+
 <!-- Fasilitas Section -->
 <section id="facilities" class="py-20 px-6 bg-[#f8fff5]/80 backdrop-blur-md shadow-2xl rounded-3xl ring-1 ring-green-100">
     <div class="max-w-7xl mx-auto">

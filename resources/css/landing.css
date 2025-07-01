@@ -253,14 +253,6 @@
 .delay-400 { transition-delay: 400ms; }
 .delay-500 { transition-delay: 500ms; }
 
-/* Hover Scale (hanya satu) */
-.hover-scale {
-    transition: transform 0.3s ease;
-}
-.hover-scale:hover {
-    transform: scale(1.05);
-}
-
 /* FadeInUp Animation */
 @keyframes fadeInUp {
     from { opacity: 0; transform: translateY(30px); }
@@ -294,14 +286,6 @@ button, input, select, textarea {
 button:focus, input:focus, select:focus, textarea:focus {
     outline: 2px solid #16a34a;
     outline-offset: 2px;
-}
-
-/* Hover Scale */
-.hover-scale {
-    transition: transform 0.3s ease;
-}
-.hover-scale:hover {
-    transform: scale(1.05);
 }
 
 /* Glass Effect */
@@ -343,3 +327,4 @@ button:focus, input:focus, select:focus, textarea:focus {
 .slide-text.delay-100 {
   animation-delay: 100ms;
 }
+

@@ -1,3 +1,34 @@
+<style>
+    /* Custom Swiper Styles */
+    .kerja-sama-swiper .swiper-pagination-bullet {
+        background: #10b981;
+        opacity: 0.5;
+    }
+
+    .kerja-sama-swiper .swiper-pagination-bullet-active {
+        opacity: 1;
+        background: #059669;
+    }
+
+    .kerja-sama-swiper .swiper-button-next,
+    .kerja-sama-swiper .swiper-button-prev {
+        color: #059669;
+    }
+
+    .kerja-sama-swiper .swiper-button-next:hover,
+    .kerja-sama-swiper .swiper-button-prev:hover {
+        color: #10b981;
+    }
+
+    /* Hover effects */
+    .swiper-slide {
+        transition: transform 0.3s ease;
+    }
+
+    .swiper-slide:hover {
+        transform: translateY(-5px);
+    }
+</style>
 <!-- Kerja Sama Section -->
 <section class="py-14 bg-gradient-to-br from-blue-50 to-green-50 px-6">
     <div class="max-w-5xl mx-auto">
