@@ -127,8 +127,8 @@
                 <div class="dropdown-header text-center">
                     <img src="{{ asset('adminlte/dist/img/user2-160x160.jpg') }}" alt="User Avatar"
                         class="img-circle" style="width: 50px; height: 50px;">
-                    <h6 class="mt-2 mb-0">{{ Auth::user()->name ?? 'Administrator' }}</h6>
-                    <small class="text-muted">{{ Auth::user()->role ?? 'Super Admin' }}</small>
+                    {{-- <h6 class="mt-2 mb-0">{{ Auth::user()->name ?? 'Administrator' }}</h6> --}}
+                    {{-- <small class="text-muted">{{ Auth::user()->role ?? 'Super Admin' }}</small> --}}
                 </div>
                 <div class="dropdown-divider"></div>
                 <a href="#" class="dropdown-item">
@@ -143,7 +143,8 @@
                 <div class="dropdown-divider"></div>
                 <form method="POST" action="{{ route('logout') }}" class="dropdown-item p-0">
                     @csrf
-                    <button type="submit" class="btn btn-link dropdown-item text-left w-100 text-danger">
+                    <button type="submit" id="logout-button"
+                        class="btn btn-link dropdown-item text-left w-100 text-danger">
                         <i class="fas fa-sign-out-alt mr-2"></i> Keluar
                     </button>
                 </form>

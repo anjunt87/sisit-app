@@ -91,51 +91,15 @@
     });
 </script>
 
+<!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+
+
 {{-- Konfirmasi Logout  --}}
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-    document.getElementById('logout-button').addEventListener('click', function(event) {
-        event.preventDefault();
-        Swal.fire({
-            title: 'Yakin ingin keluar?',
-            text: "Sesi Anda akan diakhiri.",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6', // Tombol logout (kanan)
-            cancelButtonColor: '#d33', // Tombol batal (kiri)
-            confirmButtonText: 'Ya, logout',
-            cancelButtonText: 'Batal',
-            reverseButtons: true // Penting! Agar UX tombol lebih baik
-        }).then((result) => {
-            if (result.isConfirmed) {
-                document.getElementById('logout-form').submit();
-            }
-        });
-    });
-</script>
+<script></script>
 
-<script>
-    const toggleThemeBtn = document.getElementById('toggle-theme');
-    const body = document.body;
-
-    toggleThemeBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        body.classList.toggle('auto-dark');
-        // Optional: Simpan preferensi ke localStorage
-        if (body.classList.contains('auto-dark')) {
-            localStorage.setItem('theme', 'dark');
-        } else {
-            localStorage.setItem('theme', 'light');
-        }
-    });
-
-    // Optional: load preferensi dari localStorage saat page load
-    window.addEventListener('DOMContentLoaded', () => {
-        if (localStorage.getItem('theme') === 'dark') {
-            body.classList.add('auto-dark');
-        }
-    });
-</script>
+<script></script>
 
 </body>
 

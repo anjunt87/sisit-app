@@ -11,6 +11,8 @@ export default defineConfig({
                 'resources/js/app.js',
                 'resources/css/landing.css',
                 'resources/js/landing.js',
+                'resources/css/custom.css',
+                'resources/js/custom.js',
             ],
             refresh: true,
         }),

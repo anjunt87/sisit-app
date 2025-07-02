@@ -660,33 +660,33 @@
         }
 
         // Quick access role selection
-        function setupQuickAccess() {
-            document.querySelectorAll('.grid div[class*="cursor-pointer"]').forEach(roleCard => {
-                roleCard.addEventListener('click', function() {
-                    const roleType = this.querySelector('.text-xs').textContent.toLowerCase();
-                    const loginInput = document.getElementById('login');
+        // function setupQuickAccess() {
+        //     document.querySelectorAll('.grid div[class*="cursor-pointer"]').forEach(roleCard => {
+        //         roleCard.addEventListener('click', function() {
+        //             const roleType = this.querySelector('.text-xs').textContent.toLowerCase();
+        //             const loginInput = document.getElementById('login');
 
-                    // Demo credentials (remove in production)
-                    // const demoCredentials = {
-                    //     'admin': 'admin@sekolah.id',
-                    //     'guru': 'guru@sekolah.id',
-                    //     'siswa': 'siswa@sekolah.id'
-                    // };
+        //             // Demo credentials (remove in production)
+        //             // const demoCredentials = {
+        //             //     'admin': 'admin@sekolah.id',
+        //             //     'guru': 'guru@sekolah.id',
+        //             //     'siswa': 'siswa@sekolah.id'
+        //             // };
 
-                    if (demoCredentials[roleType]) {
-                        loginInput.value = demoCredentials[roleType];
-                        loginInput.dispatchEvent(new Event('input'));
-                        loginInput.focus();
+        //             if (demoCredentials[roleType]) {
+        //                 loginInput.value = demoCredentials[roleType];
+        //                 loginInput.dispatchEvent(new Event('input'));
+        //                 loginInput.focus();
 
-                        // Add visual feedback
-                        this.style.transform = 'scale(0.95)';
-                        setTimeout(() => {
-                            this.style.transform = 'scale(1)';
-                        }, 150);
-                    }
-                });
-            });
-        }
+        //                 // Add visual feedback
+        //                 this.style.transform = 'scale(0.95)';
+        //                 setTimeout(() => {
+        //                     this.style.transform = 'scale(1)';
+        //                 }, 150);
+        //             }
+        //         });
+        //     });
+        // }
 
         // Keyboard shortcuts
         function setupKeyboardShortcuts() {

@@ -1,12 +1,12 @@
 <!-- Enhanced Sidebar -->
 <aside class="main-sidebar elevation-4">
     <!-- Brand Logo -->
-    <a href="#" class="brand-link d-flex align-items-center justify-content-center flex-column text-center p-3">
+    <a href="#" class="brand-link d-flex align-items-center" id="brandLink">
         <img src="{{ asset('storage/img/logo-niis-putih.png') }}" alt="Logo NIIS"
-            class="brand-image img-circle elevation-3 mb-2" style="width: 50px; height: 50px;">
+            class="brand-image img-circle elevation-3" id="brandImage" style="">
         <span class="brand-text font-weight-light brand-small">
-            <span class=" d-block">SISTEM INFORMASI ISLAM TERPADU</span>
-            <strong class="brand-subtitle d-block">NIIS</strong>
+            SISTEM INFORMASI ISLAM TERPADU<br>
+            <strong class="brand-subtitle">NIIS</strong>
         </span>
     </a>
 
