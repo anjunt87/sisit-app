@@ -10,6 +10,6 @@ class UserController extends Controller
 {
     public function index()
     {
-        return view('master.users.index'); // tidak perlu ambil data user, nanti fetch via JS
+        return view('master.users'); // tidak perlu ambil data user, nanti fetch via JS
     }
 }

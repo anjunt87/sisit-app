@@ -13,7 +13,7 @@
     <!-- Sidebar -->
     <div class="sidebar">
 
-        <!-- Professional Sidebar Menu -->
+        <!-- Sidebar Menu -->
         <nav class="mt-2">
             @php
                 use App\Services\MenuService;
@@ -26,16 +26,17 @@
                         $menu = $group['menu'];
                         $children = $group['children'];
                         $hasChild = count($children) > 0;
-                        $isActive =
-                            request()->is(ltrim($menu->url, '/')) ||
-                            collect($children)
-                                ->pluck('url')
-                                ->contains(request()->path());
+
+                        $childUrls = collect($children)->pluck('url')->map(fn($url) => ltrim($url, '/'))->toArray();
+                        $currentPath = request()->path();
+
+                        $isChildActive = in_array($currentPath, $childUrls);
+                        $isMenuActive = $isChildActive || request()->is(ltrim($menu->url, '/'));
                     @endphp
 
-                    <li class="nav-item {{ $hasChild ? '' : '' }} {{ $isActive ? 'menu-open' : '' }}">
+                    <li class="nav-item {{ $hasChild && $isMenuActive ? 'menu-open' : '' }}">
                         <a href="{{ $hasChild ? '#' : (is_string($menu->url) ? url($menu->url) : '#') }}"
-                            class="nav-link {{ $isActive ? 'active' : '' }}">
+                            class="nav-link {{ $isMenuActive ? 'active' : '' }}">
                             <i class="nav-icon {{ $menu->icon }}"></i>
                             <p>
                                 {{ $menu->label }}
@@ -49,9 +50,9 @@
                             <ul class="nav nav-treeview">
                                 @foreach ($children as $child)
                                     <li class="nav-item">
-                                        <a href="{{ url((string) $child->url) }}"
+                                        <a href="{{ url($child->url) }}"
                                             class="nav-link {{ request()->is(ltrim($child->url, '/')) ? 'active' : '' }}">
-                                            <i class="{{ $child->icon }}"></i>
+                                            <i class="nav-icon {{ $child->icon }}"></i>
                                             <p>{{ $child->label }}</p>
                                         </a>
                                     </li>
@@ -61,19 +62,17 @@
                     </li>
                 @endforeach
 
+                <!-- Logout -->
                 <li class="nav-item mt-lg-4">
                     <form id="logout-form" method="POST" action="{{ route('logout') }}" style="display: none;">
                         @csrf
                     </form>
 
-                    <button type="button" id="logout-button" class="nav-link btn btn-link text-left text-danger w-100">
+                    <button type="submit" id="logout-button" class="nav-link btn btn-link text-left text-danger">
                         <i class="nav-icon fas fa-sign-out-alt"></i>
                         <p>Keluar</p>
                     </button>
                 </li>
-            </ul>
-
-
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

@@ -95,6 +95,14 @@
                             </select>
                         </div>
                         <div class="form-group">
+                            <label>Nama Lengkap</label>
+                            <input type="text" id="nama_lengkap" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>No HP</label>
+                            <input type="text" id="no_hp" class="form-control">
+                        </div>
+                        <div class="form-group">
                             <label>
                                 <input type="checkbox" id="is_active" value="1" checked> Aktif
                             </label>
@@ -330,13 +338,20 @@
             $('#formMethod').val('POST');
             $('#userId').val('');
             $('#is_active').prop('checked', true);
+
+            // Kosongkan semua input baru
+            $('#nama_lengkap').val('');
+            $('#no_hp').val('');
+
             $('.password-field').show();
             $('#password').val('');
             $('#password_confirmation').val('');
             $('#password').attr('required', true);
             $('#password_confirmation').attr('required', true);
+
             modal.modal('show');
         }
+
 
         function editUser(user) {
             $('#username').val(user.username);
@@ -348,7 +363,8 @@
             $('#is_active').prop('checked', !!user.is_active);
             $('#userId').val(user.id);
             $('#formMethod').val('PUT');
-
+            $('#nama_lengkap').val(user.profil_name || '');
+            $('#no_hp').val(user.profil_no_hp || '');
             // Kosongkan field password agar tidak terisi otomatis
             $('#password').val('');
             $('#password_confirmation').val('');
@@ -407,6 +423,8 @@
             const payload = {
                 username: $('#username').val(),
                 email: $('#email').val(),
+                nama_lengkap: $('#nama_lengkap').val(),
+                no_hp: $('#no_hp').val(),
                 tipe_user: $('#tipe_user').val(),
                 role_id: $('#role_id').val(),
                 unit_id: $('#unit_id').val(),

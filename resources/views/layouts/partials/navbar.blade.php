@@ -27,37 +27,19 @@
         <li class="nav-item dropdown">
             <a class="nav-link" href="#" data-toggle="dropdown" title="Jadwal Sholat">
                 <i class="fas fa-mosque text-success mr-1"></i>
-                <span id="current-prayer" class="d-none d-md-inline">Maghrib 18:05</span>
+                <span id="current-prayer" class="d-none d-md-inline">Memuat...</span>
             </a>
             <div class="dropdown-menu dropdown-menu-right p-3" style="min-width: 280px;">
                 <h6 class="dropdown-header">
                     <i class="fas fa-calendar-alt mr-2"></i>
                     Jadwal Sholat Hari Ini
                 </h6>
-                <div class="prayer-schedule">
-                    <div class="d-flex justify-content-between py-2 border-bottom">
-                        <span><i class="fas fa-sun text-warning mr-2"></i>Subuh</span>
-                        <strong>05:15</strong>
-                    </div>
-                    <div class="d-flex justify-content-between py-2 border-bottom">
-                        <span><i class="fas fa-cloud-sun text-info mr-2"></i>Dzuhur</span>
-                        <strong>12:10</strong>
-                    </div>
-                    <div class="d-flex justify-content-between py-2 border-bottom">
-                        <span><i class="fas fa-sun text-orange mr-2"></i>Ashar</span>
-                        <strong>15:25</strong>
-                    </div>
-                    <div class="d-flex justify-content-between py-2 border-bottom bg-light">
-                        <span><i class="fas fa-moon text-primary mr-2"></i>Maghrib</span>
-                        <strong class="text-success">18:05</strong>
-                    </div>
-                    <div class="d-flex justify-content-between py-2">
-                        <span><i class="fas fa-star text-dark mr-2"></i>Isya</span>
-                        <strong>19:30</strong>
-                    </div>
+                <div id="prayer-times" class="prayer-schedule">
+                    <div class="text-center text-muted py-3">Sedang memuat...</div>
                 </div>
             </div>
         </li>
+
 
         <!-- Enhanced Notifications -->
         <li class="nav-item dropdown">
@@ -115,20 +97,24 @@
         </li>
         <!-- Enhanced User Profile -->
         <li class="nav-item dropdown">
-            <a class="nav-link" data-toggle="dropdown" href="#" title="Profile">
+            <a class="nav-link" href="#" data-toggle="dropdown" role="button" title="Toggle Light/Dark Mode">
                 <div class="d-flex align-items-center">
                     <img src="{{ asset('adminlte/dist/img/user2-160x160.jpg') }}" alt="User Avatar"
-                        class="img-size-32 img-circle mr-2">
-                    <span class="d-none d-md-inline">{{ Auth::user()->name ?? 'Admin' }}</span>
+                        class="img-circle mr-2" style="width: 20px; height: 20px;" alt="User Avatar">
+                    <div class="d-none d-md-flex flex-column justify-content-center lh-1">
+                        <span class="text-truncate" style="max-width: 120px;">
+                            {{ \Illuminate\Support\Str::limit(Auth::user()?->profil?->nama_lengkap ?? '', 10) }}
+                        </span>
+                    </div>
                     <i class="fas fa-caret-down ml-2 d-none d-md-inline"></i>
                 </div>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
                 <div class="dropdown-header text-center">
-                    <img src="{{ asset('adminlte/dist/img/user2-160x160.jpg') }}" alt="User Avatar"
-                        class="img-circle" style="width: 50px; height: 50px;">
-                    {{-- <h6 class="mt-2 mb-0">{{ Auth::user()->name ?? 'Administrator' }}</h6> --}}
-                    {{-- <small class="text-muted">{{ Auth::user()->role ?? 'Super Admin' }}</small> --}}
+                    <img src="{{ asset('adminlte/dist/img/user2-160x160.jpg') }}" alt="User Avatar" class="img-circle"
+                        style="width: 50px; height: 50px;">
+                    <h6 class="mt-2 mb-0">{{ Auth::user()?->profil?->nama_lengkap ?? '' }}</h6>
+                    <small class="text-muted">{{ Auth::user()?->role?->name ?? '' }}</small>
                 </div>
                 <div class="dropdown-divider"></div>
                 <a href="#" class="dropdown-item">
@@ -152,4 +138,146 @@
         </li>
     </ul>
 </nav>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        if (!navigator.geolocation) {
+            console.warn("Geolocation tidak didukung");
+            getPrayerTimesByKotaId('1210'); // fallback: Karawang
+            return;
+        }
+
+        navigator.geolocation.getCurrentPosition(success, fallback, {
+            timeout: 8000
+        });
+
+        function success(position) {
+            const lat = position.coords.latitude;
+            const lng = position.coords.longitude;
+            getCityAndPrayerTimes(lat, lng);
+        }
+
+        function fallback() {
+            console.warn("Tidak bisa mendapatkan lokasi, fallback Karawang");
+            getPrayerTimesByKotaId('1210');
+        }
+
+        async function getCityAndPrayerTimes(lat, lng) {
+            try {
+                const res = await fetch(
+                    `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`);
+                const data = await res.json();
+                const city = data.address.city || data.address.town || data.address.county || data.address
+                    .state;
+                console.log("Kota terdeteksi:", city);
+                getKotaIdFromMyQuran(city);
+            } catch (err) {
+                console.error("Gagal reverse geocoding:", err);
+                fallback();
+            }
+        }
+
+        async function getKotaIdFromMyQuran(cityName) {
+            try {
+                const res = await fetch('https://api.myquran.com/v2/sholat/kota/semua');
+                const data = await res.json();
+
+                const match = data.find(kota =>
+                    kota.lokasi.toLowerCase().includes(cityName.toLowerCase())
+                );
+
+                if (match) {
+                    console.log("Kota cocok:", match.lokasi, match.id);
+                    getPrayerTimesByKotaId(match.id);
+                } else {
+                    console.warn("Kota tidak cocok, fallback Karawang");
+                    getPrayerTimesByKotaId('1210');
+                }
+            } catch (err) {
+                console.error("Gagal ambil daftar kota:", err);
+                fallback();
+            }
+        }
+
+        async function getPrayerTimesByKotaId(kotaId) {
+            const today = new Date();
+            const yyyy = today.getFullYear();
+            const mm = String(today.getMonth() + 1).padStart(2, '0');
+            const dd = String(today.getDate()).padStart(2, '0');
+            const now = today.toTimeString().substring(0, 5);
+
+            const url = `https://api.myquran.com/v2/sholat/jadwal/${kotaId}/${yyyy}/${mm}/${dd}`;
+            const container = document.getElementById('prayer-times');
+            const display = document.getElementById('current-prayer');
+
+            try {
+                const res = await fetch(url);
+                const data = await res.json();
+                const jadwal = data.data.jadwal;
+
+                const list = [{
+                        name: 'Subuh',
+                        time: jadwal.subuh,
+                        icon: 'fa-sun',
+                        color: 'warning'
+                    },
+                    {
+                        name: 'Dzuhur',
+                        time: jadwal.dzuhur,
+                        icon: 'fa-cloud-sun',
+                        color: 'info'
+                    },
+                    {
+                        name: 'Ashar',
+                        time: jadwal.ashar,
+                        icon: 'fa-sun',
+                        color: 'orange'
+                    },
+                    {
+                        name: 'Maghrib',
+                        time: jadwal.maghrib,
+                        icon: 'fa-moon',
+                        color: 'primary'
+                    },
+                    {
+                        name: 'Isya',
+                        time: jadwal.isya,
+                        icon: 'fa-star',
+                        color: 'dark'
+                    }
+                ];
+
+                let currentPrayer = null;
+                for (let i = 0; i < list.length; i++) {
+                    const nowT = list[i].time;
+                    const nextT = list[i + 1]?.time;
+                    if (now >= nowT && (!nextT || now < nextT)) {
+                        currentPrayer = list[i];
+                        break;
+                    }
+                }
+
+                display.textContent = currentPrayer ?
+                    `${currentPrayer.name} ${currentPrayer.time}` :
+                    'Belum masuk waktu';
+
+                // Render dropdown
+                container.innerHTML = '';
+                list.forEach(prayer => {
+                    const isNow = currentPrayer && prayer.name === currentPrayer.name;
+                    container.innerHTML += `
+                        <div class="d-flex justify-content-between py-2 border-bottom ${isNow ? 'bg-light' : ''}">
+                            <span><i class="fas ${prayer.icon} text-${prayer.color} mr-2"></i>${prayer.name}</span>
+                            <strong class="${isNow ? 'text-success' : ''}">${prayer.time}</strong>
+                        </div>
+                    `;
+                });
+
+            } catch (err) {
+                console.error("Gagal ambil jadwal:", err);
+                container.innerHTML = `<div class="text-danger py-2">Gagal memuat jadwal sholat</div>`;
+                display.textContent = 'Gagal';
+            }
+        }
+    });
+</script>
 <!-- Enhanced & Responsive Sidebar -->
