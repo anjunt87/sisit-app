@@ -4,11 +4,14 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ $title ?? 'SISIT NIIS' }}</title>
 
     {{-- ✅ Favicon --}}
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/favicon-32x32.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicon-16x16.png') }}">
+    {{-- <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/favicon-32x32.png') }}"> --}}
+    {{-- <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicon-16x16.png') }}"> --}}
+    <link rel="icon" type="image/png" href="{{ asset('storage/img/logo-niis-warna.png') }}">
+
 
     {{-- ✅ Google Fonts --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -48,7 +51,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
     {{-- ✅ Vite Build Files --}}
-    @vite(['resources/css/app.css', 'resources/css/custom.css', 'resources/js/app.js', 'resources/js/custom.js'])
+    @vite(['resources/css/custom.css', 'resources/js/custom.js'])
 
     {{-- ✅ Tambahan Style dari Halaman --}}
     @stack('styles')

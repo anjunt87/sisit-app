@@ -13,6 +13,7 @@
     <link rel="apple-touch-icon" href="/icon-192x192.png">
 
     <title>Login - Sistem Sekolah</title>
+    <link rel="icon" type="image/png" href="{{ asset('storage/img/logo-niis-warna.png') }}">
     {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
 
     <!-- Vite Assets -->

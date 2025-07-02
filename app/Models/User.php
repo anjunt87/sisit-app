@@ -23,11 +23,13 @@ class User extends Authenticatable
         'tipe_user',
         'profil_id',
         'role_id',
+        'unit_id',
         'is_active',
         'email_verified_at',
         'last_login_at',
         'password_changed_at',
     ];
+
 
     protected $hidden = [
         'password',
@@ -55,5 +57,21 @@ class User extends Authenticatable
     public function penugasan()
     {
         return $this->hasMany(PenugasanGuru::class, 'guru_id', 'profil_id');
+    }
+
+    // app/Models/User.php
+
+    // Model User.php
+    // Model User.php
+    public function profil()
+    {
+        return $this->belongsTo(Profil::class, 'profil_id');
+        // atau jika model Anda bernama Profils:
+        // return $this->belongsTo(Profils::class, 'profil_id');
+    }
+
+    public function unit()
+    {
+        return $this->belongsTo(Unit::class, 'unit_id', 'id');
     }
 }

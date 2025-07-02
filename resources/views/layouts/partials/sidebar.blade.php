@@ -33,7 +33,7 @@
                                 ->contains(request()->path());
                     @endphp
 
-                    <li class="nav-item {{ $hasChild ? 'has-treeview' : '' }} {{ $isActive ? 'menu-open' : '' }}">
+                    <li class="nav-item {{ $hasChild ? '' : '' }} {{ $isActive ? 'menu-open' : '' }}">
                         <a href="{{ $hasChild ? '#' : (is_string($menu->url) ? url($menu->url) : '#') }}"
                             class="nav-link {{ $isActive ? 'active' : '' }}">
                             <i class="nav-icon {{ $menu->icon }}"></i>
@@ -51,7 +51,7 @@
                                     <li class="nav-item">
                                         <a href="{{ url((string) $child->url) }}"
                                             class="nav-link {{ request()->is(ltrim($child->url, '/')) ? 'active' : '' }}">
-                                            <i class="far fa-circle nav-icon"></i>
+                                            <i class="{{ $child->icon }}"></i>
                                             <p>{{ $child->label }}</p>
                                         </a>
                                     </li>

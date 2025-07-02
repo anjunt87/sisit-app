@@ -7,7 +7,7 @@
                 Program Unggulan
             </span>
             <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gray-800">
-                Keunggulan <span class="text-green-600">SISIT</span>
+                Keunggulan <span class="text-green-600">Nurul Imam Islamic School</span>
             </h2>
             <p class="text-gray-600 text-lg max-w-3xl mx-auto">
                 Program-program inovatif yang dirancang untuk mengembangkan potensi siswa secara maksimal
