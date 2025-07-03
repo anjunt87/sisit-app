@@ -18,6 +18,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ChatbotController;
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\RolesController;
+use App\Http\Controllers\UnitsController;
+use App\Http\Controllers\YayasanController;
 
 Route::get('/', function () {
     return view('landingpage');
@@ -69,4 +72,7 @@ Route::middleware('auth')->group(function () {
 
 Route::prefix('master')->middleware(['auth'])->group(function () {
     Route::resource('users', UserController::class);
+    Route::resource('roles', RolesController::class);
+    Route::resource('units', UnitsController::class);
+    Route::resource('yayasan', YayasanController::class);
 });

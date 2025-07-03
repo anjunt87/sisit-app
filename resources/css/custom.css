@@ -846,7 +846,7 @@ body {
 }
 
 /* === Success Button === */
-.btn-success {
+/* .btn-success {
     background: var(--primary-green);
     border-color: var(--primary-green);
     color: #fff;
@@ -857,14 +857,14 @@ body {
     border-color: var(--secondary-green);
     box-shadow: var(--shadow-md);
     transform: translateY(-2px);
-}
+} */
 /* Dark Mode */
-.dark-mode .btn-success,
+/* .dark-mode .btn-success,
 .auto-dark .btn-success {
     background: #2e7d32;
     border-color: #2e7d32;
     color: #fff;
-}
+} */
 
 /* === Warning Button === */
 .btn-warning {

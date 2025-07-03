@@ -157,7 +157,7 @@
         }
 
         function fallback() {
-            console.warn("Tidak bisa mendapatkan lokasi, fallback Karawang");
+            console.warn("Tidak bisa mendapatkan lokasi");
             getPrayerTimesByKotaId('1210');
         }
 
@@ -189,7 +189,7 @@
                     console.log("Kota cocok:", match.lokasi, match.id);
                     getPrayerTimesByKotaId(match.id);
                 } else {
-                    console.warn("Kota tidak cocok, fallback Karawang");
+                    console.warn("Kota tidak cocok");
                     getPrayerTimesByKotaId('1210');
                 }
             } catch (err) {

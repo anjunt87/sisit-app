@@ -54,7 +54,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Form User</h5>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <button type="button" class="close" onclick="$('#userModal').modal('hide')">&times;</button>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
@@ -117,7 +117,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-xs btn-secondary" data-dismiss="modal">Batal</button>
+                        <button type="button" class="btn btn-xs btn-secondary"
+                            onclick="$('#userModal').modal('hide')">Batal</button>
                         <button type="submit" class="btn btn-xs btn-primary">Simpan</button>
                     </div>
                 </div>
