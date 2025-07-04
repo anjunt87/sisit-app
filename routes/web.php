@@ -76,3 +76,7 @@ Route::prefix('master')->middleware(['auth'])->group(function () {
     Route::resource('units', UnitsController::class);
     Route::resource('yayasan', YayasanController::class);
 });
+
+Route::get('/test-404', function () {
+    abort(404);
+});
